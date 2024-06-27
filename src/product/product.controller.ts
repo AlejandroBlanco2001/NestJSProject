@@ -28,6 +28,10 @@ export class ProductController {
     status: 201,
     description: 'The product has been successfully created',
   })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request',
+  })
   @UsePipes(
     new ValidationPipe({
       forbidNonWhitelisted: true,
@@ -43,7 +47,7 @@ export class ProductController {
   @ApiOperation({ summary: 'Get all the products' })
   @ApiResponse({
     status: 200,
-    description: 'Return all the products',
+    description: 'Return all the products with pagination of 10 items per page',
   })
   findAll(
     @Query('limit', ParseIntPipe) limit: number = 10,
@@ -58,6 +62,10 @@ export class ProductController {
     status: 404,
     description: 'Product not found',
   })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the product with the given id',
+  })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.productService.findOne(id);
   }
@@ -67,6 +75,14 @@ export class ProductController {
   @ApiResponse({
     status: 204,
     description: 'The product has been successfully updated',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Product not found',
   })
   @UsePipes(
     new ValidationPipe({
@@ -88,6 +104,10 @@ export class ProductController {
   @ApiResponse({
     status: 204,
     description: 'The product has been successfully deleted',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Product not found',
   })
   @HttpCode(204)
   remove(@Param('id', ParseIntPipe) id: number) {
