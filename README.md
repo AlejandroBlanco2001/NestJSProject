@@ -58,8 +58,7 @@ random_project
 │   │   ├── pipes (Validation pipes)
 │   │   │   ├── constants.ts (Validation pipe)
 │   │   │   ├── paginationPipe.pipe.ts (Validation pipe)
-
+```
 
 ## Disclaimer
-
 This project is a simple example of a NestJS project. It is not meant to be used in production. It is meant to be used as a learning resource. If you want to use it in production, you need to add more features and tests to it.
