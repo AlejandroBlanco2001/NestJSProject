@@ -41,6 +41,13 @@ export class ProductController {
   }
 
   @Patch(':id')
+  @UsePipes(
+    new ValidationPipe({
+      forbidNonWhitelisted: true,
+      whitelist: true,
+      transform: true,
+    }),
+  )
   update(
     @Param('id', ParseIntPipe) id: string,
     @Body() updateProductDto: UpdateProductDto,
