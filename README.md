@@ -1,73 +1,65 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
+To install the project, you need to have Node.js installed on your machine. You can download it from [here](https://nodejs.org/en/download/). Then you need to clone the repository and run the following command in the root of the project:
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+After that you need to create a .env file in the root of the project and add the following variables:
 
+```bash
+PORT=3000
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER="your_username"
+POSTGRES_PASSWORD="your_password"
+POSTGRES_DATABASE="your_database_name"
+MODE=DEV
+RUN_MIGRATIONS=true
+```
+
+That is all you need to do to install the project.
+
+## Running the app
+To run the app you need to run the following command in the root of the project:
 ```bash
 # development
 $ npm run start
-
+```
+Or you can run the following command to run the app in watch mode (development mode):
+```bash
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+## Directory structure
+The project is structured in the following way:
 ```
+random_project
+├── src
+│   ├── config
+│   │   ├── config.service.ts (Configuration service)
+│   ├── migration
+│   ├── model
+│   │   ├── product.entity.ts (Product entity)
+│   ├── product
+│   │   ├── dto
+│   │   │   ├── create-product.dto.ts (Create product DTO)
+│   │   │   ├── update-product.dto.ts (Update product DTO)
+│   │   ├── product.controller.ts (Product controller)
+│   │   ├── product.service.ts (Product service)
+│   │   ├── product.module.ts (Product module)
+│   ├── app.module.ts (Main module)
+│   ├── app.controller.ts (Main controller)
+│   ├── app.service.ts (Main service)
+├   ├── main.ts (Main file)
+├   ├── scripts
+│   ├── shared (Shared module)
+│   │   ├── pipes (Validation pipes)
+│   │   │   ├── constants.ts (Validation pipe)
+│   │   │   ├── paginationPipe.pipe.ts (Validation pipe)
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Disclaimer
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+This project is a simple example of a NestJS project. It is not meant to be used in production. It is meant to be used as a learning resource. If you want to use it in production, you need to add more features and tests to it.
