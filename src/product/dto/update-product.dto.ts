@@ -10,6 +10,7 @@ import {
   IsNumber,
   IsPositive,
   IsInt,
+  Min,
 } from 'class-validator';
 
 /**
@@ -42,8 +43,11 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   })
   descripcion?: string;
 
-  @IsNumber()
-  @IsPositive()
+  @IsNumber({
+    allowNaN: false,
+    allowInfinity: false,
+  })
+  @Min(0)
   @ApiProperty({
     description: 'Precio del producto',
     required: true,
@@ -52,8 +56,11 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   })
   precio: number;
 
-  @IsNumber()
-  @IsPositive()
+  @IsNumber({
+    allowNaN: false,
+    allowInfinity: false,
+  })
+  @Min(0)
   @IsInt()
   @ApiProperty({
     description: 'Cantidad de productos',

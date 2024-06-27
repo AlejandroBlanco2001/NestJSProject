@@ -5,9 +5,9 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsPositive,
   IsString,
   MaxLength,
+  Min,
 } from 'class-validator';
 
 export class CreateProductDto implements Readonly<CreateProductDto> {
@@ -34,8 +34,11 @@ export class CreateProductDto implements Readonly<CreateProductDto> {
   })
   descripcion?: string;
 
-  @IsNumber()
-  @IsPositive()
+  @IsNumber({
+    allowNaN: false,
+    allowInfinity: false,
+  })
+  @Min(0)
   @ApiProperty({
     description: 'Precio del producto',
     required: true,
@@ -44,8 +47,11 @@ export class CreateProductDto implements Readonly<CreateProductDto> {
   })
   precio: number;
 
-  @IsNumber()
-  @IsPositive()
+  @IsNumber({
+    allowNaN: false,
+    allowInfinity: false,
+  })
+  @Min(0)
   @IsInt()
   @ApiProperty({
     description: 'Cantidad de productos',
