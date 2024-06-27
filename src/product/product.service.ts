@@ -45,6 +45,8 @@ export class ProductService {
       throw new NotFoundException(`Product #${id} not found`);
     }
 
+    this.logger.log(`Product found with id ${id}`);
+
     return product;
   }
 
@@ -54,6 +56,7 @@ export class ProductService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} product`;
+    this.logger.log(`Deleting product with id ${id}`);
+    return this.repo.delete(id);
   }
 }
