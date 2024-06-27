@@ -53,13 +53,37 @@ export class ProductService {
     return product;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
+  async update(id: number, updateProductDto: UpdateProductDto) {
+    const product = await this.repo.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!product) {
+      this.logger.warn(`Product with id ${id} not found`);
+      throw new NotFoundException(`Product #${id} not found`);
+    }
+
     this.logger.log(`Updating product with id ${id}`);
-    return this.repo.update(id, updateProductDto);
+    return await this.repo.update(id, updateProductDto);
   }
 
-  remove(id: number) {
+  async remove(id: number) {
+    const product = await this.repo.findOne({
+      where: {
+        id,
+      },
+    });
+
+    console.log(product);
+
+    if (!product) {
+      this.logger.warn(`Product with id ${id} not found`);
+      throw new NotFoundException(`Product #${id} not found`);
+    }
+
     this.logger.log(`Deleting product with id ${id}`);
-    return this.repo.delete(id);
+    return await this.repo.delete(id);
   }
 }
