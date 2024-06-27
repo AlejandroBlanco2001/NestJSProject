@@ -1,6 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-// This way is just to load the .env file and use it in the ConfigService class
 import 'dotenv/config';
 import { join } from 'path';
 
