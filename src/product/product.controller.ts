@@ -15,7 +15,7 @@ import {
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PaginationPipe } from 'src/shared/pipes/paginationPipe.pipe';
 
 @ApiTags('product')
@@ -51,7 +51,19 @@ export class ProductController {
     description: 'Return all the products with pagination of 10 items per page',
   })
   @UsePipes(PaginationPipe)
-  findAll(@Query() query: { limit?: number; page?: number }) {
+  @ApiQuery({
+    name: 'limit',
+    required: true,
+    type: Number,
+    description: 'Limit of items per page',
+  })
+  @ApiQuery({
+    name: 'page',
+    required: true,
+    type: Number,
+    description: 'Page number',
+  })
+  findAll(@Query() query: { limit: number; page: number }) {
     const { limit = 10, page = 1 } = query;
 
     return this.productService.findAll(limit, page);
