@@ -10,6 +10,7 @@ import {
   ValidationPipe,
   UsePipes,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -44,8 +45,11 @@ export class ProductController {
     status: 200,
     description: 'Return all the products',
   })
-  findAll() {
-    return this.productService.findAll();
+  findAll(
+    @Query('limit', ParseIntPipe) limit: number = 10,
+    @Query('page', ParseIntPipe) page: number = 1,
+  ) {
+    return this.productService.findAll(limit, page);
   }
 
   @Get(':id')

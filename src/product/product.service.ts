@@ -23,10 +23,13 @@ export class ProductService {
     return this.repo.save(createProductDto);
   }
 
-  async findAll() {
+  async findAll(limit: number, page: number) {
     this.logger.log('Finding all products');
 
-    const products = await this.repo.find();
+    const products = await this.repo.find({
+      take: limit,
+      skip: limit * (page - 1),
+    });
 
     return products;
   }
