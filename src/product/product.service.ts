@@ -4,6 +4,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Repository } from 'typeorm';
 import { Product } from 'src/model/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ILike } from 'typeorm';
 
 @Injectable()
 export class ProductService {
@@ -49,6 +50,18 @@ export class ProductService {
     }
 
     this.logger.log(`Product found with id ${id}`);
+
+    return product;
+  }
+
+  async findByName(name: string) {
+    this.logger.log(`Finding product that start with the name ${name}`);
+
+    const product = await this.repo.find({
+      where: {
+        nombre: ILike(`%${name}%`),
+      },
+    });
 
     return product;
   }

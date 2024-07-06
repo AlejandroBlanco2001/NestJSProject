@@ -82,6 +82,10 @@ export class ProductController {
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.productService.findOne(id);
   }
+  @Get('/name/:name')
+  findByName(@Param('name') name: string) {
+    return this.productService.findByName(name);
+  }
 
   @Put(':id')
   @ApiOperation({ summary: 'Update a product' })
